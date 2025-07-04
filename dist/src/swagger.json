@@ -1,0 +1,59 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Weather API Service",
+        "version": "1.0.0",
+        "description": "API for weather data using OpenWeather API."
+    },
+    "paths": {
+        "/api/weather/current": {
+            "get": {
+                "summary": "Get current weather for a city",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "query",
+                        "required": true,
+                        "schema": { "type": "string" },
+                        "description": "City name (Milan, Rome, Florence)"
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Current weather data" },
+                    "400": { "description": "Missing city query param" },
+                    "404": { "description": "City not allowed" },
+                    "500": { "description": "External service error" }
+                }
+            }
+        },
+        "/api/weather/stats": {
+            "get": {
+                "summary": "Get weather stats for three cities",
+                "responses": {
+                    "200": { "description": "Stats object" },
+                    "500": { "description": "External service error" }
+                }
+            }
+        },
+        "/api/weather/forecast": {
+            "get": {
+                "summary": "Get 5-day forecast for a city",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "query",
+                        "required": true,
+                        "schema": { "type": "string" },
+                        "description": "City name (Milan, Rome, Florence)"
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Forecast data" },
+                    "400": { "description": "Missing city query param" },
+                    "404": { "description": "City not allowed" },
+                    "500": { "description": "External service error" }
+                }
+            }
+        }
+    }
+}
